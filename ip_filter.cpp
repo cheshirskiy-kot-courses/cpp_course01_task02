@@ -14,7 +14,7 @@ int main(int argc, char const * argv[])
             break;
         }
 
-        // TODO reverse lexicographically sort
+        rsort_lexicographically(ip_pool.begin(), ip_pool.end());
 
         for (auto & ip : ip_pool) {
             std::cout << std::to_string(ip[0]);
@@ -23,14 +23,6 @@ int main(int argc, char const * argv[])
             }
             std::cout << std::endl;
         }
-
-        // 222.173.235.246
-        // 222.130.177.64
-        // 222.82.198.61
-        // ...
-        // 1.70.44.170
-        // 1.29.168.152
-        // 1.1.234.8
 
         // TODO filter by first byte and output
         // ip = filter(1)

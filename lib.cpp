@@ -1,5 +1,7 @@
 #include "lib.h"
 
+#include <algorithm>
+
 
 std::vector<std::string> split(const std::string & str, char d)
 {
@@ -32,4 +34,10 @@ IP parse_ip(const std::string & str)
     }
 
     return ip_uint8;
+}
+
+
+void rsort_lexicographically(IP_Iter first, IP_Iter last)
+{
+    std::sort(first, last, std::greater<IP>());
 }
