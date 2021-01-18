@@ -23,7 +23,6 @@ int main(int argc, char const * argv[])
 
         for (std::string line; std::getline(std::cin, line);) {
             ip_pool.push_back(parse_ip(line));
-            break;
         }
 
         rsort_lexicographically(ip_pool.begin(), ip_pool.end());
