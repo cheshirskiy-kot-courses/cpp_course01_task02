@@ -87,5 +87,34 @@ BOOST_AUTO_TEST_CASE(test_filter_2_args)
     BOOST_CHECK(out == res);
 }
 
+BOOST_AUTO_TEST_CASE(test_filter_any)
+{
+    auto ip_pool = IP_Pool{
+        IP{222, 173, 235, 46},
+        IP{222, 82, 198, 61},
+        IP{186, 204, 34, 46},
+        IP{185, 46, 85, 78},
+        IP{68, 46, 218, 208},
+        IP{46, 161, 60, 92},
+        IP{39, 46, 86, 85},
+        IP{5, 189, 203, 46},
+        IP{1, 70, 168, 152},
+        IP{1, 1, 46, 8}
+    };
+
+    auto out = filter_any(ip_pool, 46);
+    auto res = IP_Pool{
+        IP{222, 173, 235, 46},
+        IP{186, 204, 34, 46},
+        IP{185, 46, 85, 78},
+        IP{68, 46, 218, 208},
+        IP{46, 161, 60, 92},
+        IP{39, 46, 86, 85},
+        IP{5, 189, 203, 46},
+        IP{1, 1, 46, 8}
+    };
+
+    BOOST_CHECK(out == res);
+}
 
 BOOST_AUTO_TEST_SUITE_END()

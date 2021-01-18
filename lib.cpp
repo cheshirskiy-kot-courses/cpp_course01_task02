@@ -41,3 +41,17 @@ void rsort_lexicographically(IP_Iter first, IP_Iter last)
 {
     std::sort(first, last, std::greater<IP>());
 }
+
+IP_Pool filter_any(IP_Pool ip_pool, uint8_t byte)
+{
+    IP_Pool res;
+    for (auto & ip : ip_pool) {
+        if (std::any_of(ip.cbegin(), ip.cend(),
+            [byte](uint8_t ip_part) { return ip_part == byte; })) {
+
+            res.push_back(ip);
+        }
+    }
+
+    return res;
+}

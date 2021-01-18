@@ -38,3 +38,6 @@ IP_Pool filter(IP_Pool ip_pool, Bytes... bytes)
 
     return res;
 }
+
+
+IP_Pool filter_any(IP_Pool ip_pool, uint8_t byte);
