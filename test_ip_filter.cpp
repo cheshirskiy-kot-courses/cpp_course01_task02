@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(test_rsort)
         IP{222, 173, 235, 246}
     };
 
-    rsort_lexicographically(ip_pool.begin(), ip_pool.end());
+    rsort_lexicographically(ip_pool);
     auto res = IP_Pool{
         IP{222, 173, 235, 246},
         IP{222, 173, 235, 64},

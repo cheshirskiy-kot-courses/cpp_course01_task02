@@ -25,7 +25,7 @@ int main(int argc, char const * argv[])
             ip_pool.push_back(parse_ip(line));
         }
 
-        rsort_lexicographically(ip_pool.begin(), ip_pool.end());
+        rsort_lexicographically(ip_pool);
 
         auto ip_pool_1 = filter(ip_pool, 1);
         auto ip_pool_46_70 = filter(ip_pool, 46, 70);

@@ -9,7 +9,6 @@
 
 using IP = std::array<uint8_t, 4>;
 using IP_Pool = std::vector<IP>;
-using IP_Iter = IP_Pool::iterator;
 
 
 // ("",  '.') -> [""]
@@ -22,7 +21,7 @@ std::vector<std::string> split(const std::string & str, char d);
 
 IP parse_ip(const std::string & str);
 
-void rsort_lexicographically(IP_Iter first, IP_Iter last);
+void rsort_lexicographically(IP_Pool & ip_pool);
 
 
 template<class ...Bytes>

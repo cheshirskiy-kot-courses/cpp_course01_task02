@@ -35,9 +35,9 @@ IP parse_ip(const std::string & str)
 }
 
 
-void rsort_lexicographically(IP_Iter first, IP_Iter last)
+void rsort_lexicographically(IP_Pool & ip_pool)
 {
-    std::sort(first, last, std::greater<IP>());
+    std::sort(ip_pool.begin(), ip_pool.end(), std::greater<IP>());
 }
 
 
