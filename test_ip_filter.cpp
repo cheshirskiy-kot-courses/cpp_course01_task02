@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(test_parse_ip)
 
 BOOST_AUTO_TEST_CASE(test_rsort)
 {
-    auto ip_pool = std::vector<IP>{
+    auto ip_pool = IP_Pool{
         IP{222, 173, 235, 64},
         IP{1, 70, 44, 170},
         IP{1, 1, 234, 8},
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(test_rsort)
     };
 
     rsort_lexicographically(ip_pool.begin(), ip_pool.end());
-    auto res = std::vector<IP>{
+    auto res = IP_Pool{
         IP{222, 173, 235, 246},
         IP{222, 173, 235, 64},
         IP{222, 82, 198, 61},
@@ -39,5 +39,53 @@ BOOST_AUTO_TEST_CASE(test_rsort)
 
     BOOST_CHECK(ip_pool == res);
 }
+
+BOOST_AUTO_TEST_CASE(test_filter_1_arg)
+{
+    auto ip_pool = IP_Pool{
+        IP{222, 173, 235, 246},
+        IP{222, 173, 235, 64},
+        IP{222, 82, 198, 61},
+        IP{1, 70, 168, 152},
+        IP{1, 70, 44, 170},
+        IP{1, 1, 234, 8}
+    };
+
+    auto out = filter(ip_pool, 1);
+    auto res = IP_Pool{
+        IP{1, 70, 168, 152},
+        IP{1, 70, 44, 170},
+        IP{1, 1, 234, 8}
+    };
+
+    BOOST_CHECK(out == res);
+}
+
+BOOST_AUTO_TEST_CASE(test_filter_2_args)
+{
+    auto ip_pool = IP_Pool{
+        IP{222, 173, 235, 246},
+        IP{222, 173, 235, 64},
+        IP{222, 82, 198, 61},
+        IP{46, 70, 225, 39},
+        IP{46, 70, 147, 26},
+        IP{46, 70, 113, 73},
+        IP{46, 70, 29, 76},
+        IP{1, 70, 168, 152},
+        IP{1, 70, 44, 170},
+        IP{1, 1, 234, 8}
+    };
+
+    auto out = filter(ip_pool, 46, 70);
+    auto res = IP_Pool{
+        IP{46, 70, 225, 39},
+        IP{46, 70, 147, 26},
+        IP{46, 70, 113, 73},
+        IP{46, 70, 29, 76}
+    };
+
+    BOOST_CHECK(out == res);
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()
