@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <algorithm>
+#include <iterator>
 
 
 using IP = std::array<uint8_t, 4>;
@@ -30,11 +32,10 @@ IP_Pool filter(IP_Pool ip_pool, Bytes... bytes)
     auto b = std::array< uint8_t, sizeof...(bytes) >{ static_cast<uint8_t>(bytes)... };
     
     IP_Pool res;
-    for (auto & ip : ip_pool) {
-        if (std::equal(ip.cbegin(), ip.cbegin() + b.size(), b.cbegin())) {
-            res.push_back(ip);
-        }
-    }
+    std::copy_if(ip_pool.cbegin(), ip_pool.cend(), std::back_inserter(res),
+        [&b](const IP & ip) {
+            return std::equal(ip.cbegin(), ip.cbegin() + b.size(), b.cbegin());
+        });
 
     return res;
 }
